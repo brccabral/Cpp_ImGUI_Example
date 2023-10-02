@@ -37,12 +37,23 @@ int main()
     glViewport(0, 0, screen_width, screen_height);
 
     UseImGui myimgui;
-    myimgui.Init();
+    myimgui.Init(window, glsl_version);
 
     while(!glfwWindowShouldClose(window))
     {
+        glfwPollEvents();
+
+        glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        myimgui.NewFrame();
         myimgui.Update();
         myimgui.Render();
+
+        int display_w, display_h;
+        glfwGetFramebufferSize(window, &display_w, &display_h);
+        glViewport(0, 0, display_w, display_h);
+        glfwSwapBuffers(window);
     }
 
     myimgui.Shutdown();

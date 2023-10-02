@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(ImGUI_GettingStarted)
+project(ImGUI_Example)
 
 find_package(glfw3 REQUIRED)
 
