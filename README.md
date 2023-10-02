@@ -14,8 +14,19 @@ Part 2: https://www.youtube.com/watch?v=19XcuaYF3kM
 - Check glfw3 flags
     - `pkg-config --static --libs glfw3`
     - `pkg-config --cflags glfw3`
+- Go to Glad website
+    - https://glad.dav1d.de/
+- Select these options
+    - Language: `C/C++`
+    - Specification `OpenGL`
+    - API: gl `Version 3.3`
+    - Profile `Core`
+    - Check option `Generate a loader`
+    - click button `Generate`
+- Download `glad.zip` and extract `path/to/glad`, define it as `GLAD_DIR`
 - Compile all these sources
     - main.cpp
+    - UseImGui.cpp
     - $(IMGUI_DIR)/imgui.cpp
     - $(IMGUI_DIR)/imgui_demo.cpp
     - $(IMGUI_DIR)/imgui_draw.cpp
@@ -23,3 +34,4 @@ Part 2: https://www.youtube.com/watch?v=19XcuaYF3kM
     - $(IMGUI_DIR)/imgui_widgets.cpp
     - $(IMGUI_DIR)/backends/imgui_impl_glfw.cpp
     - $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
+    - ${GLAD_DIR}/src/glad.c
