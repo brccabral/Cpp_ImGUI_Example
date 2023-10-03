@@ -24,8 +24,7 @@ public:
 
         ImGui::SliderFloat ( "float", &f, 0.0f, 1.0f );         // Edit 1 float using a slider from 0.0f to 1.0f
 
-        static float clear_color[3];
-        ImGui::ColorEdit3 ( "clear color", ( float* ) &clear_color ); // Edit 3 floats representing a color
+        bool clear_color_changed = ImGui::ColorEdit3 ( "clear color", ( float* ) &clear_color ); // Edit 3 floats representing a color
 
         if ( ImGui::Button ( "Button" ) )                       // Buttons return true when clicked (most widgets return true when edited/activated)
             counter++;
@@ -34,8 +33,21 @@ public:
 
         ImGui::Text ( "Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate );
         ImGui::End();
+
+        if ( clear_color_changed )
+            change_clear_color ( clear_color );
     }
+private:
+    float clear_color[3] {};
+
+    void change_clear_color ( float newcolor[3] );
 };
+
+void CustomImGui::change_clear_color ( float newcolor[3] )
+{
+    glClearColor ( newcolor[0], newcolor[1], newcolor[2], 1.0f );
+}
+
 
 int main()
 {
@@ -70,7 +82,7 @@ int main()
     {
         glfwPollEvents();
 
-        glClearColor ( 0.45f, 0.55f, 0.60f, 1.00f );
+
         glClear ( GL_COLOR_BUFFER_BIT );
 
         myimgui.NewFrame();
